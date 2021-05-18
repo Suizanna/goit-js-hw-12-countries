@@ -16,7 +16,7 @@ function onSearch(event) {
   countryToSearch = event.target.value;
   console.log(countryToSearch);
 
-  if (!countryToSearch) {
+  if (countryToSearch) {
     clearMarkup();
     return;
   }
