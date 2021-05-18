@@ -23,14 +23,19 @@ li {
 }
 
 .title {
+  text-align: center;
   margin: 0 0 25px 0;
 }
+
+
 .input-search {
+  display: block;
+  margin: 0 auto;
   margin-bottom: 35px;
-  padding-left: 15px;
+  padding-left: 20px;
   padding-right: 10px;
   height: 40px;
-  min-width: 300px;
+  min-width: 400px;
   border-radius: 20px;
   border: transparent;
   outline: none;
@@ -42,6 +47,7 @@ li {
   text-align: left;
 }
 
+
 .list-countries {
   width: 50%;
   margin: 0 auto;
@@ -49,6 +55,7 @@ li {
 
 .list-countries p {
   margin: 0;
+  font-size: 26px;
 }
 
 .country-card {
@@ -58,9 +65,16 @@ li {
 }
 .country-info {
   margin-right: 20px;
+  font-size: 26px;
 }
 .country-title {
   text-align: center;
-  margin: 0;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  font-size: 50px;
+}
+
+.countries__text {
+  color: #ffa700;
+  font-size: 26px;
 }

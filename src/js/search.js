@@ -1,25 +1,19 @@
 import debounce from 'lodash.debounce';
-import API from './fetchCountries.js';
+import fetchAPI from './fetchCountries.js';
 import listOfContriesTpl from '../templates/list-of-countries.hbs';
 import countryCardTpl from '../templates/country-markup.hbs';
 
-import { info, error } from '@pnotify/core';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/core/dist/BrightTheme.css';
+import { tooManyCountries, noResult } from './notify.js';
 
-const inputEl = document.querySelector('.input-search');
+const inputRef = document.querySelector('.input-search');
 const cardContainer = document.querySelector('.js-card-container');
 let countryToSearch = '';
 
-inputEl.addEventListener(
-  'input',
-  debounce(() => {
-    onSearch();
-  }, 500),
+inputRef.addEventListener('input', debounce(onSearch, 500),
 );
 
-function onSearch() {
-  countryToSearch = inputEl.value;
+function onSearch(event) {
+  countryToSearch = event.target.value;
   console.log(countryToSearch);
 
   if (!countryToSearch) {
@@ -27,7 +21,7 @@ function onSearch() {
     return;
   }
 
-  API.fetchCountries(countryToSearch)
+  fetchAPI.fetchCountries(countryToSearch)
     .then(checkingNumberOfCountries)
     .catch(onFetchError);
 }
@@ -55,24 +49,6 @@ function renderMarkup(template, countries) {
 
 function clearMarkup() {
   cardContainer.innerHTML = '';
-}
-
-function noResult() {
-  info({
-    title: 'Uh Oh!',
-    text: 'No matches found!',
-    delay: 1500,
-    closerHover: true,
-  });
-}
-
-function tooManyCountries() {
-  error({
-    title: 'Uh Oh!',
-    text: 'Too many matches found. Please enter a more specific query!',
-    delay: 2500,
-    closerHover: true,
-  });
 }
 
 function onFetchError(error) {
