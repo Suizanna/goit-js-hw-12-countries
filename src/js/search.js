@@ -15,11 +15,8 @@ formRef.addEventListener('submit', event => {
   event.preventDefault();
 });
 
-// let countryToSearch = '';
-
 function onSearch(event) {
   const queryValue = event.target.value;
-  console.log(queryValue);
 
   if (!queryValue) {
     clearMarkup();
@@ -32,9 +29,7 @@ function onSearch(event) {
 }
 
 function checkingNumberOfCountries(data) {
-  if (!data ) {
-    return;
-  } else if (data.length > 10) {
+ if (data.length > 10) {
     tooManyCountries();
     clearMarkup();
   } else if (data.length >= 2  && data.length <= 10) {
@@ -42,7 +37,7 @@ function checkingNumberOfCountries(data) {
     renderMarkup(listOfContriesTpl, data);
   } else if (data.length === 1) {
     clearMarkup();
-    renderMarkup(countryCardTpl, data[0]);
+    renderMarkup(countryCardTpl, data);
   } else {
     clearMarkup();
     noResult();
