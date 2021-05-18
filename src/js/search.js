@@ -5,45 +5,52 @@ import countryCardTpl from '../templates/country-markup.hbs';
 
 import { tooManyCountries, noResult } from './notify.js';
 
+const formRef = document.querySelector('#search-form');
 const inputRef = document.querySelector('.input-search');
 const cardContainer = document.querySelector('.js-card-container');
-let countryToSearch = '';
 
 inputRef.addEventListener('input', debounce(onSearch, 500),
 );
+formRef.addEventListener('submit', event => {
+  event.preventDefault();
+});
+
+// let countryToSearch = '';
 
 function onSearch(event) {
-  countryToSearch = event.target.value;
-  console.log(countryToSearch);
+  const queryValue = event.target.value;
+  console.log(queryValue);
 
-  if (countryToSearch) {
+  if (!queryValue) {
     clearMarkup();
     return;
   }
 
-  fetchAPI.fetchCountries(countryToSearch)
+  fetchAPI.fetchCountries(queryValue)
     .then(checkingNumberOfCountries)
     .catch(onFetchError);
 }
 
-function checkingNumberOfCountries(countries) {
-  if (countries.length > 10) {
-    clearMarkup();
+function checkingNumberOfCountries(data) {
+  if (!data ) {
+    return;
+  } else if (data.length > 10) {
     tooManyCountries();
-  } else if (countries.length <= 10 && countries.length > 1) {
     clearMarkup();
-    renderMarkup(listOfContriesTpl, countries);
-  } else if (countries.length === 1) {
+  } else if (data.length >= 2  && data.length <= 10) {
     clearMarkup();
-    renderMarkup(countryCardTpl, countries[0]);
+    renderMarkup(listOfContriesTpl, data);
+  } else if (data.length === 1) {
+    clearMarkup();
+    renderMarkup(countryCardTpl, data[0]);
   } else {
     clearMarkup();
     noResult();
   }
 }
 
-function renderMarkup(template, countries) {
-  const markup = template(countries);
+function renderMarkup(template, data) {
+  const markup = template(data);
   cardContainer.insertAdjacentHTML('beforeend', markup);
 }
 
