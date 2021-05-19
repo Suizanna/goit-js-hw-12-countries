@@ -11,40 +11,44 @@ const cardContainer = document.querySelector('.js-card-container');
 
 inputRef.addEventListener('input', debounce(onSearch, 500),
 );
-formRef.addEventListener('submit', event => {
-  event.preventDefault();
-});
+// formRef.addEventListener('submit', event => {
+//   event.preventDefault();
+// });
 
-function onSearch(event) {
-  const queryValue = event.target.value;
+function onSearch() {
+  clearMarkup();
+  let inputValue = inputRef.value.replace(/[^a-z]/gi, '');
+  
+  let query = '';    
+  query = inputValue;  //const queryValue = event.target.value;
 
-  if (!queryValue) {
-    clearMarkup();
+  if (!query) {
+    // clearMarkup();
     return;
   }
-
-  fetchAPI.fetchCountries(queryValue)
+  
+  fetchAPI.fetchCountries(query)
     .then(checkingNumberOfCountries)
-    .catch(onFetchError);
+    .catch(noResult);
 }
 
-function checkingNumberOfCountries(data) {
- if (data.length > 10) {
+function checkingNumberOfCountries(data) { 
+  if (data.length > 10) {
     tooManyCountries();
-    clearMarkup();
+    // clearMarkup();
   } else if (data.length >= 2  && data.length <= 10) {
-    clearMarkup();
+    // clearMarkup();
     renderMarkup(listOfContriesTpl, data);
   } else if (data.length === 1) {
     clearMarkup();
-    renderMarkup(countryCardTpl, data);
+    renderMarkup(countryCardTpl, data[0]);
   } else {
-    clearMarkup();
+    clearInput()
     noResult();
   }
 }
 
-function renderMarkup(template, data) {
+function renderMarkup(template, data) { 
   const markup = template(data);
   cardContainer.insertAdjacentHTML('beforeend', markup);
 }
@@ -53,8 +57,7 @@ function clearMarkup() {
   cardContainer.innerHTML = '';
 }
 
-function onFetchError(error) {
-  clearMarkup();
-
-  console.log(error);
+function clearInput() {
+  inputRef.value = '';
 }
+
