@@ -40,10 +40,10 @@ function checkingNumberOfCountries(data) {
     // clearMarkup();
     renderMarkup(listOfContriesTpl, data);
   } else if (data.length === 1) {
-    clearMarkup();
+    // clearMarkup();
     renderMarkup(countryCardTpl, data[0]);
   } else {
-    clearInput()
+    // clearInput();
     noResult();
   }
 }

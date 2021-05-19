@@ -6,7 +6,7 @@ export function noResult() {
     info({
       title: 'Uh Oh!',
       text: 'This country was not found!',
-      delay: 1500,
+      delay: 2500,
       closerHover: true,
     });
   }
