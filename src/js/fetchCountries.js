@@ -14,5 +14,11 @@ export default { fetchCountries };
 //     }
 
 //     throw new Error();
-//   });
+//   })
+//     .catch(error => {
+//       // console.log(error)
+//       errorNotification('No matches found. Try again.');
+//       return error;
+//     });
 // }
+// export default { fetchCountries }; 
