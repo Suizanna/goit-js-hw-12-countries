@@ -9,7 +9,7 @@ export default { fetchCountries };
 // // async await 
 // async function fetchCountries(countryName) {
 //   const responce = await fetch(`${BASE_URL}/${countryName}`);
-//   const country = await responce..json());
+//   const country = await responce.json());
 //   return country;
 // }
 
