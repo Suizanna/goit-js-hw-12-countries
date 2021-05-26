@@ -13,7 +13,7 @@ inputRef.addEventListener('input', debounce(onSearch, 500),);
 
 
 function onSearch() {
-  clearMarkup();
+  // clearMarkup();
 
   const query = inputRef.value; //запрос значения импута
   if (!query.trim()) {
@@ -43,7 +43,8 @@ function checkingNumberOfCountries(data) {
 
 function renderMarkup(template, data) { 
   const markup = template(data);
-  cardContainer.insertAdjacentHTML('beforeend', markup);
+  // cardContainer.insertAdjacentHTML('beforeend', markup);
+  cardContainer.inserttHTML('beforeend', markup);
 }
 
 function clearMarkup() {
