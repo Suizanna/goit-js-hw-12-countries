@@ -12,7 +12,7 @@ const ref = {
 ref.input.addEventListener('input', debounce(onSearch, 500),);
 
 function onSearch(e) {
-    event.preventDefault();
+   
     if (e.target.value.trim() !== '') { 
     fetchCountrie(e.target.value.trim()).then(data => {
         console.log(data);
