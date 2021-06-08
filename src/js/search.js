@@ -1,27 +1,27 @@
-import fetchCountrie from './fetchCountries.js';
+import fetchCountries from './fetchCountries.js';
 import debounce from 'lodash.debounce';
 import listOfContriesTpl from '../templates/list.hbs';
 import createCountryMarkup from '../templates/country-markup.hbs';
 import { tooManyCountries, noResult } from './notify.js';
 
-const ref = {
+const refs = {
     input: document.querySelector('.input-search'),
     list: document.querySelector('.country-list'),
 }
 
-ref.input.addEventListener('input', debounce(onSearch, 500),);
+refs.input.addEventListener('input', debounce(onSearch, 500),);
 
 function onSearch(e) {
-    
+  
     if (e.target.value.trim() !== '') { 
-    fetchCountrie(e.target.value.trim()).then(data => {
+    fetchCountries(e.target.value.trim()).then(data => {
         console.log(data);
         if (data.length > 1  && data.length < 11) {
-        ref.list.innerHTML = listOfContriesTpl(data);
+        refs.list.innerHTML = listOfContriesTpl(data);
         return;
         }
         if(data.length === 1) {
-            ref.list.innerHTML = createCountryMarkup(data[0]);
+            refs.list.innerHTML = createCountryMarkup(data[0]);
             return;
         }
         if (data.length > 10) {
@@ -42,6 +42,6 @@ function onSearch(e) {
 //деструктур
 // function onSearch({ target: {value} }) {
 //     if (value.trim() !== '') { 
-//   fetchCountrie(value.trim()).then(responce => console.log(responce));
+//   fetchCountries(value.trim()).then(responce => console.log(responce));
 // }
 // }
