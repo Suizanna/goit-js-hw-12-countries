@@ -1,7 +1,7 @@
 import fetchCountrie from './fetchCountries.js';
 import debounce from 'lodash.debounce';
 import listOfContriesTpl from '../templates/list.hbs';
-import createCountryMarkup from '../templates/country.hbs';
+import createCountryMarkup from '../templates/country-markup.hbs';
 import { tooManyCountries, noResult } from './notify.js';
 
 const ref = {
