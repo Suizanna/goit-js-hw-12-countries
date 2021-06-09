@@ -12,10 +12,17 @@ const refs = {
 refs.input.addEventListener('input', debounce(onSearch, 500),);
 
 function onSearch(e) {
-  
+    // console.log(e.target.value);
+
     if (e.target.value.trim() !== '') { 
     fetchCountries(e.target.value.trim()).then(data => {
         console.log(data);
+
+        // if (e.target.value.trim() !== '') { 
+        //     fetchCountries(e.target.value.trim()).then(checkQuantity);
+        //     }
+        // и checkQuantity это функция для  if (data.length > 1)
+
         if (data.length > 1  && data.length < 11) {
         refs.list.innerHTML = listOfContriesTpl(data);
         return;
@@ -45,3 +52,26 @@ function onSearch(e) {
 //   fetchCountries(value.trim()).then(responce => console.log(responce));
 // }
 // }
+
+//вариант 2
+// refs.input.addEventListener('input', debounce((e) => {
+//     console.log(e.target.value);
+//     fetchCountries(e.target.value.trim()).then(checkQuantity); 
+//   }, 500)
+//   )
+
+//   function checkQuantity(countries) {
+//     if (countries.length > 10) {
+//         tooManyCountries();
+//         return;
+//     };
+//     if (countries.length <= 10 && countries.length >= 2) {
+//       refs.list.innerHTML =  listOfContriesTpl(countries);
+//       return;
+//     };
+//     if (countries.length === 1) {
+//       refs.list.innerHTML = createCountryMarkup(countries[0]);
+//       return;
+//     }
+//   }
+

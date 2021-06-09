@@ -18,6 +18,25 @@ body {
    */
   background-image: url('./images/bg-pattern.png');
 }
+
+
+ul {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 li {
   list-style: square;
 }
@@ -26,7 +45,6 @@ li {
   text-align: center;
   margin: 0 0 25px 0;
 }
-
 
 .input-search {
   display: block;
@@ -74,7 +92,32 @@ li {
   font-size: 50px;
 }
 
-.countries__text {
+/* .countries__text {
   color: #ffa700;
   font-size: 26px;
+} */
+
+.text {
+  color: #fff;
+}
+
+.countries__text {
+  color: #ffa700;
+}
+
+.countries__list {
+  margin-left: 40px;
+}
+
+.countries__item {
+  display: flex;
+  align-items: center;
+}
+
+.countries__flag {
+  width: 40px;
+}
+
+.countries__name {
+  margin-left: 10px;
 }
